@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+
+  isCheckedEmail: boolean;
+  isCheckedPassword: boolean;
+  isCheckedRePassword: boolean;
 
   ngOnInit(): void {
     // alert(/^(\w+)@([\w.]+)(\.|-)[\w.]/.test('bear@tadcon'));
@@ -16,14 +19,25 @@ export class AppComponent implements OnInit {
 
   checkEmail(email: string) {
     const reEmail = new RegExp(/^(\w+)@([\w.]+)(\.|-)[\w.]/);
-    const a = email;
-    this.title = a;
-    alert(reEmail.test(email));
+    this.isCheckedEmail = reEmail.test(email) ? false : true ;
   }
 
-  comfirmAccount() {
-    const reEmail = new RegExp('^(\w+)@([\w.]+)(\.|-)[\w.]');
-    alert(reEmail.test('123'));
+  checkPassword(password: string) {
+  const rePassword = new RegExp(/^(\w*8)/);
+    this.isCheckedPassword = rePassword.test(password) ? false : true ;
   }
 
+  checkRePassword(password: HTMLInputElement , rePassword: string) {
+    this.isCheckedRePassword = (password.value === rePassword) ? false : true;
+  }
+
+  checkProcess1() {
+    if (this.isCheckedEmail === false
+      && this.isCheckedPassword === false
+      && this.isCheckedRePassword === false) {
+        alert('通過');
+    } else {
+      alert('失敗');
+    }
+  }
 }
