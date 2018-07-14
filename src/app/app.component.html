@@ -109,7 +109,7 @@
           <div class="col-lg-4 col-12">
             <div class="form-group">
               <select class="form-control" [class.is-invalid]="isCheckedDay" (change)="checkDay($event.target.value)">
-                <option value="">DAY</option>
+                <option value="0">DAY</option>
                 <option *ngFor="let item of day" [value]="item">{{item}}</option>
               </select>
               <div class="invalid-feedback">請選擇日期</div>

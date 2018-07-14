@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   isCheckedDay: boolean;
   isCheckedCity: boolean;
   isCheckedDist: boolean;
+  isCheckedAddress: boolean;
 
   nowProcess: number;
   year = new Array;
@@ -116,6 +117,12 @@ export class AppComponent implements OnInit {
     addressInput.value = cityInput.value + dist;
   }
 
+  checkAddress(address) {
+    const reAddress = new RegExp(/[\u4E00-\u9FA5]{8,}/);
+    this.isCheckedAddress = reAddress.test(address) ? false : true;
+
+  }
+
   checkProcess1() {
     // if (this.isCheckedEmail === false
     //   && this.isCheckedPassword === false
@@ -126,6 +133,10 @@ export class AppComponent implements OnInit {
     //   alert('驗證失敗');
     // }
     this.nowProcess = 1;
+  }
+
+  checkProcess2() {
+    this.nowProcess = 2;
   }
 
   finish(num) {
