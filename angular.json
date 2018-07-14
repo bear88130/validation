@@ -22,7 +22,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/bs4.1.1",
-              "src/My97DatePicker"
+              "src/My97DatePicker",
+              "src/data.json"
             ],
             "styles": [
               "src/styles.scss"

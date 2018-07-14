@@ -1,44 +1,162 @@
 <div class="container">
 
-  <div class="process-block">
-  </div>
-
-  <div class="title-block">
-    <div class="title text-center">
-      Create Account
-    </div>
-    <div class="subTitle  text-center">
-      Glad to see you here!
-    </div>
-
-  </div>
-
-  <div class="form-group">
-    <label class="fieldName" for="email">Account</label>
-    <input type="email" class="form-control" id="email" placeholder="name@example.com" [class.is-invalid]="isCheckedEmail" (blur)="checkEmail($event.target.value)">
-    <div class="invalid-feedback">
-      填寫e-mail，需有@和.
+  <div class="process-block row justify-content-center align-items-center">
+    <div class="col-auto">
+      <div class="process-1 process-checked" [class.process-checked]="finish(1)" [class.process-now]="now(0)"></div>
+      <div class="process-line process-line-checked" [class.process-line-checked]="finish(1)"></div>
+      <div class="process-2 process-now" [class.process-checked]="finish(2)" [class.process-now]="now(1)"></div>
+      <div class="process-line" [class.process-line-checked]="finish(2)"></div>
+      <div class="process-3" [class.process-checked]="finish(3)" [class.process-now]="now(2)"></div>
+      <div class="process-line" [class.process-line-checked]="finish(3)"></div>
+      <div class="process-4" [class.process-checked]="finish(4)" [class.process-now]="now(3)"></div>
     </div>
   </div>
 
-  <div class="form-group">
-    <label class="fieldName" for="password">Password</label>
-    <input type="text" class="form-control" id="password" autocomplete="off" [class.is-invalid]="isCheckedPassword" (blur)="checkPassword($event.target.value)" #password>
-    <div class="invalid-feedback">
-      密碼須超過 8 碼
-    </div>
-  </div>
+  <div [ngSwitch]="nowProcess">
+    <div *ngSwitchCase="0">
+      <div class="title-block">
+        <div class="title text-center">
+          Create Account
+        </div>
+        <div class="subTitle  text-center">
+          Glad to see you here!
+        </div>
+      </div>
+      <div class="form-block">
+        <div class="form-group">
+          <label class="fieldName" for="email">Account</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" [class.is-invalid]="isCheckedEmail" (blur)="checkEmail($event.target.value)">
+          <div class="invalid-feedback">
+            填寫e-mail，需有@和.
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label class="fieldName" for="checkPassword">Comfirm Password</label>
-    <input type="text" class="form-control" id="checkPassword" [class.is-invalid]="isCheckedRePassword" (blur)="checkRePassword(password , $event.target.value)">
-    <div class="invalid-feedback">
-      確認密碼與上列不相符合
-    </div>
-  </div>
+        <div class="form-group">
+          <label class="fieldName" for="password">Password</label>
+          <input type="password" class="form-control" id="password" autocomplete="off" [class.is-invalid]="isCheckedPassword" (blur)="checkPassword($event.target.value)"
+            #password>
+          <div class="invalid-feedback">
+            密碼須超過 8 碼
+          </div>
+        </div>
 
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary blue-btn" (click)="checkProcess1()">Submit</button>
+        <div class="form-group">
+          <label class="fieldName" for="checkPassword">Comfirm Password</label>
+          <input type="password" class="form-control" id="checkPassword" [class.is-invalid]="isCheckedRePassword" (blur)="checkRePassword(password , $event.target.value)">
+          <div class="invalid-feedback">
+            確認密碼與上列不相符合
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary blue-btn" (click)="checkProcess1()">NEXT</button>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="1">
+      <div class="title-block">
+        <div class="title text-center">
+          General Infomation
+        </div>
+        <div class="subTitle  text-center">
+          Tell us who you are!
+        </div>
+      </div>
+      <div class="form-block">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <div class="form-group">
+              <label class="fieldName" for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Moda" [class.is-invalid]="isCheckedName" (blur)="checkName($event.target.value)">
+              <div class="invalid-feedback">
+                填寫姓名，1 個字以上
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="form-group">
+              <label class="fieldName" for="phone">Phone*</label>
+              <input type="text" class="form-control" id="phone" placeholder="0912345678" [class.is-invalid]="isCheckedPhone" (blur)="checkPhone($event.target.value)">
+              <div class="invalid-feedback">
+                填寫手機，需 10 碼
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label class="fieldName">Birth Date</label>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="form-group">
+              <select class="form-control" [class.is-invalid]="isCheckedYear" (change)="checkYear($event.target.value)">
+                <option value="0">Year</option>
+                <option *ngFor="let item of year" [value]="item">{{item}}</option>
+              </select>
+              <div class="invalid-feedback">請選擇年份</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="form-group">
+              <select class="form-control" [class.is-invalid]="isCheckedMonth" (change)="checkMonth($event.target.value)">
+                <option value="0">Month</option>
+                <option *ngFor="let item of month" [value]="item">{{item}}</option>
+              </select>
+              <div class="invalid-feedback">請選擇月份</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="form-group">
+              <select class="form-control" [class.is-invalid]="isCheckedDay" (change)="checkDay($event.target.value)">
+                <option value="">DAY</option>
+                <option *ngFor="let item of day" [value]="item">{{item}}</option>
+              </select>
+              <div class="invalid-feedback">請選擇日期</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label class="fieldName">Address*</label>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="form-group">
+              <select #city class="form-control" [class.is-invalid]="isCheckedCity" (change)="checkCity($event.target.value,address)">
+                <option value="0">City</option>
+                <option *ngFor="let item of map.city" [value]="item">{{item}}</option>
+              </select>
+              <div class="invalid-feedback">取選取縣市</div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="form-group">
+              <select class="form-control" [class.is-invalid]="isCheckedDist" (change)="checkDist($event.target.value,address,city)">
+                <option value="0">Dist</option>
+                <option *ngFor="let item of distArray" [value]="item" >{{item}}</option>
+              </select>
+              <div class="invalid-feedback">請選取行政區</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label class="fieldName" for="address">Account</label>
+              <input #address type="text" class="form-control" id="address" placeholder="Address Detail" [class.is-invalid]="isCheckedAddress" (blur)="checkAddress($event.target.value)">
+              <div class="invalid-feedback">
+                填寫完整地址
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary blue-btn" (click)="checkProcess2()">NEXT</button>
+      </div>
+    </div>
+    <div *ngSwitchCase="2"> </div>
+    <div *ngSwitchCase="3"> </div>
   </div>
 
 </div>

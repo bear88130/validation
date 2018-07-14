@@ -14,6 +14,10 @@ body {
   color: #000000;
 }
 
+.form-block{
+  margin-top:24px;
+}
+
 .fieldName {
   font-family: Roboto-Regular;
   font-size: 20px;
@@ -21,15 +25,12 @@ body {
   line-height: 24px;
 }
 
-.process-block{
-  height: 100px;
-}
-
 .title-block{
   height: 100px;
 }
 
-.fieldName+input{
+.fieldName+input,
+.form-group select{
   border:2px solid black;
 }
 
@@ -42,4 +43,49 @@ body {
   margin-top: 24px;
   font-family: Roboto-Regular;
   font-size: 20px;
+}
+
+.process-block{
+  height: 100px;
+  border-top:4px solid $normal-blue;
+}
+
+.process-1,
+.process-2,
+.process-3,
+.process-4{
+  float: left;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid $light-blue;
+}
+
+.process-line{
+  float: left;
+  height: 16px;
+  width: 14px;
+  border-bottom: 2px solid $light-blue;
+}
+
+.process-now{
+  background-image: radial-gradient(circle,$normal-blue 0px, $normal-blue 8px ,white 8px , white 16px);
+  border: 2px solid $normal-blue;
+}
+
+.process-checked{
+  &::before{
+    content: '✓';
+    color: white;
+    position: relative;
+    left: 6px;
+    font-weight: bolder;
+    }
+  background-color: $normal-blue;
+  border: 2px solid $normal-blue;
+}
+
+.process-line-checked{
+  border-bottom: 2px solid $normal-blue;
 }
