@@ -148,4 +148,18 @@ export class AppComponent implements OnInit {
     return (this.nowProcess === num) ? true : false;
   }
 
+  uploadImg(input: HTMLInputElement , img: HTMLImageElement) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(input.files[0]);
+
+      reader.onload = function(e: any) {
+        img.src = e.target.result ;
+      };
+
+    }
+
+  }
+
 }
