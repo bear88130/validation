@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   isCheckedDist: boolean;
   isCheckedAddress: boolean;
 
+  demoImgSrc;
   nowProcess: number;
   year = new Array;
   month = new Array;

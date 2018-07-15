@@ -89,3 +89,26 @@ body {
 .process-line-checked{
   border-bottom: 2px solid $normal-blue;
 }
+
+.upload_cover {
+  position: relative;
+  width: 300px;
+  height: 250px;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  cursor: pointer;
+  background: #cccccc;
+  border-radius: 10%;
+  }
+  #upload_input {
+  display: none;
+  }
+  .upload_icon {
+  color: #efefef;
+  font-weight: bold;
+  font-size: 144px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 20%;
+  }

@@ -134,7 +134,7 @@
             <div class="form-group">
               <select class="form-control" [class.is-invalid]="isCheckedDist" (change)="checkDist($event.target.value,address,city)">
                 <option value="0">Dist</option>
-                <option *ngFor="let item of distArray" [value]="item" >{{item}}</option>
+                <option *ngFor="let item of distArray" [value]="item">{{item}}</option>
               </select>
               <div class="invalid-feedback">請選取行政區</div>
             </div>
@@ -142,7 +142,8 @@
           <div class="col-12">
             <div class="form-group">
               <label class="fieldName" for="address">Account</label>
-              <input #address type="text" class="form-control" id="address" placeholder="Address Detail" [class.is-invalid]="isCheckedAddress" (blur)="checkAddress($event.target.value)">
+              <input #address type="text" class="form-control" id="address" placeholder="Address Detail" [class.is-invalid]="isCheckedAddress"
+                (blur)="checkAddress($event.target.value)">
               <div class="invalid-feedback">
                 填寫完整地址
               </div>
@@ -155,7 +156,35 @@
         <button type="submit" class="btn btn-primary blue-btn" (click)="checkProcess2()">NEXT</button>
       </div>
     </div>
-    <div *ngSwitchCase="2"> </div>
+    <div *ngSwitchCase="2">
+      <div class="title-block">
+        <div class="title text-center">
+          Create Account
+        </div>
+        <div class="subTitle  text-center">
+          Glad to see you here!
+        </div>
+      </div>
+
+      <div class="row justify-content-center  align-items-center">
+        <div class="col-auto">
+          <div class="form-block">
+            <label class="upload_cover">
+              <input id="upload_input" type="file" (change)="uploadImg($event)">
+              <i class="upload_icon far fa-image"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <img [src]="demoImgSrc" alt="" width="100%">
+        </div>
+        <div class="col-lg-4 col-12"></div>
+        <div class="col-lg-4 col-12"></div>
+      </div>
+
+    </div>
     <div *ngSwitchCase="3"> </div>
   </div>
 
