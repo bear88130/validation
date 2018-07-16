@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { readFile } from 'fs';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,9 @@ export class AppComponent implements OnInit {
   month = new Array;
   day = new Array;
   distArray = new Array;
+  imgArray = [{img:'https://s.yimg.com/ny/api/res/1.2/AjtwTJgXj9JrqjHOR8L.3w--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTUwO2g9MzUzO2lsPXBsYW5l/https://media.zenfs.com/creatr-images/GLB/2018-07-16/bbee6c70-88ab-11e8-9a27-75f5e93e4dae_-2018-07-16-11-50-49.png.cf.jpg',alt:'1'},
+  {img:'https://s.yimg.com/ny/api/res/1.2/pSxSuSRNhUS5cNPjTMpn6A--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/http://media.zenfs.com/zh-Hant-TW/homerun/setn.com.tw/d5dc7e14fe893da7603c6bfa33ef4a15',alt:'2'},
+  {img:'https://s.yimg.com/ny/api/res/1.2/TLrD2h6EA_luQjESX0No2w--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTIwMDtoPTY3NQ--/http://media.zenfs.com/zh-Hant-TW/homerun/ebc.net.tw/6671d2145e55cdbd2cc2c5cad9e42252',alt:'3'}];
   map = {
     'city':['臺北市','基隆市','新北市','宜蘭縣','桃園市','新竹市','新竹縣','苗栗縣','臺中市','彰化縣','南投縣','嘉義市','嘉義縣','雲林縣','臺南市','高雄市','澎湖縣','金門縣','屏東縣','臺東縣','花蓮縣','連江縣'],
     'region':[
@@ -148,17 +152,25 @@ export class AppComponent implements OnInit {
     return (this.nowProcess === num) ? true : false;
   }
 
-  uploadImg(input: HTMLInputElement , img: HTMLImageElement) {
+  uploadImg(input: HTMLInputElement) {
+
+    // 將多張圖片顯示預覽
     if (input.files && input.files[0]) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(input.files[0]);
-
-      reader.onload = function(e: any) {
-        img.src = e.target.result ;
-      };
-
+      for (let i = 0 ; i < input.files.length ; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(input.files[i]);
+        reader.onload = () => {
+          this.imgArray.push({alt: String(i) , img: reader.result });
+        };
+      }
     }
+
+    // 刪除相同圖片或提示
+    // 限制圖片大小
+    // 可刪除預覽的圖片，並刪除預上傳圖片
+
+
+
 
   }
 

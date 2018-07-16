@@ -170,18 +170,16 @@
         <div class="col-auto">
           <div class="form-block">
             <label class="upload_cover">
-              <input id="upload_input" type="file" (change)="uploadImg($event.target,demoImg)" multiple/>
+              <input id="upload_input" type="file" (change)="uploadImg($event.target)" multiple/>
               <i class="upload_icon far fa-image"></i>
             </label>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-12">
-          <img #demoImg [src]="demoImgSrc" alt="" width="100%">
+        <div class="col-lg-4 col-12" *ngFor="let item of imgArray">
+          <img [src]="item.img" [alt]="item.alt" width="100%">
         </div>
-        <div class="col-lg-4 col-12"></div>
-        <div class="col-lg-4 col-12"></div>
       </div>
 
     </div>
