@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { readFile } from 'fs';
+
 
 @Component({
   selector: 'app-root',
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
   }
 
   checkName(name: string) {
-    const reName = new RegExp(/[\u4E00-\u9FA5]{2,5}/);
+    const reName = new RegExp(/^[\u4E00-\u9FA5]{2,5}$/);
     this.isCheckedName = reName.test(name) ? false : true;
   }
 
